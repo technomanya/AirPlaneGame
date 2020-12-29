@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MT_Terrain_01
-  m_Shader: {fileID: -6465566751694194690, guid: c75321e4d7f3bfd499f79376da5dbff5, type: 3}
+  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,14 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_76E9789D:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BaseMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -40,10 +32,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -75,42 +63,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _ThresholdTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _ToonShade:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_380F2FFB: 0
-    - Vector1_99AE1336: 0.61
-    - Vector1_A188EF2C: 0.2
-    - Vector1_A490CC5E: 0
-    - _AlphaClip: 0
-    - _Blend: 0
     - _BumpScale: 1
-    - _ClearCoatMask: 0
-    - _ClearCoatSmoothness: 0
-    - _Cull: 2
     - _Cutoff: 0.5
-    - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EnvironmentReflections: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.05
     - _GlossyReflections: 1
@@ -119,39 +80,14 @@ Material:
     - _OcclusionStrength: 1
     - _Outline: 0.005
     - _Parallax: 0.02
-    - _QueueOffset: 0
-    - _RampSmooth: 0.2
-    - _RampSmoothAdd: 0.75
-    - _RampThreshold: 0.5
-    - _ReceiveShadows: 1
-    - _RimMax: 0.85
-    - _RimMin: 0.6
-    - _RimStrength: 0.5
-    - _SampleGI: 0
-    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _SpecBlend: 1
-    - _SpecSmooth: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Surface: 0
-    - _ThresholdScale: 4
-    - _ThresholdStrength: 1
     - _UVSec: 0
-    - _WindQuality: 0
-    - _WorkflowMode: 1
     - _ZWrite: 1
-    - __dummy__: 0
     m_Colors:
-    - Color_C1CF420: {r: 0, g: 0, b: 0, a: 0}
-    - Color_E2FCF9D5: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0}
-    - Color_a0e990c4f9f04a14a5a5cd9bd9a2c92a: {r: 0.59607846, g: 0.8207547, b: 0.4627451, a: 0}
-    - _BaseColor: {r: 0.59607846, g: 0.8235294, b: 0.462745, a: 1}
     - _Color: {r: 0.59607846, g: 0.8235294, b: 0.4627451, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 0.785, g: 0.785, b: 0.785, a: 1}
-    - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SColor: {r: 0.19499996, g: 0.19499996, b: 0.19499996, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
