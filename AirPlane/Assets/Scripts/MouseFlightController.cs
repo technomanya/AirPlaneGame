@@ -23,6 +23,9 @@ namespace MFlight
         [SerializeField] [Tooltip("Transform of the camera itself")]
         private Transform cam = null;
 
+        [SerializeField] [Tooltip("Joystick control component")]
+        public FloatingJoystick fJoystick;
+
         [Header("Options")]
         [SerializeField] [Tooltip("Follow aircraft using fixed update loop")]
         private bool useFixed = true;
@@ -42,6 +45,7 @@ namespace MFlight
 
         private Vector3 frozenDirection = Vector3.forward;
         private bool isMouseAimFrozen = false;
+        private Vector3 joystickPose;
 
         /// <summary>
         /// Get a point along the aircraft's boresight projected out to aimDistance meters.
@@ -98,6 +102,7 @@ namespace MFlight
 
         private void Update()
         {
+            joystickPose = new Vector3(fJoystick.Horizontal, 0, fJoystick.Vertical);
             if (useFixed == false)
                 UpdateCameraPos();
 
@@ -130,22 +135,27 @@ namespace MFlight
             // Mouse input.
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
             float mouseY = -Input.GetAxis("Mouse Y") * mouseSensitivity;
-
+            mouseX = joystickPose.x * mouseSensitivity;
+            mouseY = joystickPose.y * mouseSensitivity;
+            
             // Rotate the aim target that the plane is meant to fly towards.
             // Use the camera's axes in world space so that mouse motion is intuitive.
             mouseAim.Rotate(cam.right, mouseY, Space.World);
             mouseAim.Rotate(cam.up, mouseX, Space.World);
-
+            Debug.Log(mouseAim.position);
             // The up vector of the camera normally is aligned to the horizon. However, when
             // looking straight up/down this can feel a bit weird. At those extremes, the camera
             // stops aligning to the horizon and instead aligns to itself.
             Vector3 upVec = (Mathf.Abs(mouseAim.forward.y) > 0.9f) ? cameraRig.up : Vector3.up;
 
             // Smoothly rotate the camera to face the mouse aim.
-            cameraRig.rotation = Damp(cameraRig.rotation,
-                                      Quaternion.LookRotation(mouseAim.forward, upVec),
-                                      camSmoothSpeed,
-                                      Time.deltaTime);
+            if(Input.GetMouseButton(0))
+            {
+                cameraRig.rotation = Damp(cameraRig.rotation,
+                    Quaternion.LookRotation(mouseAim.forward, upVec),
+                    camSmoothSpeed,
+                    Time.deltaTime);
+            }
         }
 
         private Vector3 GetFrozenMouseAimPos()
@@ -182,34 +192,34 @@ namespace MFlight
 
         private void OnDrawGizmos()
         {
-            if (showDebugInfo == true)
-            {
-                Color oldColor = Gizmos.color;
+            //if (showDebugInfo == true)
+            //{
+            //    Color oldColor = Gizmos.color;
 
-                // Draw the boresight position.
-                if (aircraft != null)
-                {
-                    Gizmos.color = Color.white;
-                    Gizmos.DrawWireSphere(BoresightPos, 10f);
-                }
+            //    // Draw the boresight position.
+            //    if (aircraft != null)
+            //    {
+            //        Gizmos.color = Color.white;
+            //        Gizmos.DrawWireSphere(BoresightPos, 10f);
+            //    }
 
-                if (mouseAim != null)
-                {
-                    // Draw the position of the mouse aim position.
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawWireSphere(MouseAimPos, 10f);
+            //    if (mouseAim != null)
+            //    {
+            //        // Draw the position of the mouse aim position.
+            //        Gizmos.color = Color.red;
+            //        Gizmos.DrawWireSphere(MouseAimPos, 10f);
 
-                    // Draw axes for the mouse aim transform.
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawRay(mouseAim.position, mouseAim.forward * 50f);
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawRay(mouseAim.position, mouseAim.up * 50f);
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawRay(mouseAim.position, mouseAim.right * 50f);
-                }
+            //        // Draw axes for the mouse aim transform.
+            //        Gizmos.color = Color.blue;
+            //        Gizmos.DrawRay(mouseAim.position, mouseAim.forward * 50f);
+            //        Gizmos.color = Color.green;
+            //        Gizmos.DrawRay(mouseAim.position, mouseAim.up * 50f);
+            //        Gizmos.color = Color.red;
+            //        Gizmos.DrawRay(mouseAim.position, mouseAim.right * 50f);
+            //    }
 
-                Gizmos.color = oldColor;
-            }
+            //    Gizmos.color = oldColor;
+            //}
         }
     }
 }

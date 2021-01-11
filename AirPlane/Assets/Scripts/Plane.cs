@@ -66,12 +66,14 @@ namespace MFlight.Demo
             pitchOverride = false;
 
             float keyboardRoll = Input.GetAxis("Horizontal");
+            keyboardRoll = controller.fJoystick.Horizontal;
             if (Mathf.Abs(keyboardRoll) > .25f)
             {
                 rollOverride = true;
             }
 
             float keyboardPitch = Input.GetAxis("Vertical");
+            keyboardPitch = -controller.fJoystick.Vertical;
             if (Mathf.Abs(keyboardPitch) > .25f)
             {
                 pitchOverride = true;
@@ -82,8 +84,11 @@ namespace MFlight.Demo
             float autoYaw = 0f;
             float autoPitch = 0f;
             float autoRoll = 0f;
-            if (controller != null && isMouseHold)
+            if (controller != null && !isMouseHold)
+            {
                 RunAutopilot(controller.MouseAimPos, out autoYaw, out autoPitch, out autoRoll);
+                //RunAutopilot(Vector3.forward, out autoYaw, out autoPitch, out autoRoll);
+            }
 
             // Use either keyboard or autopilot input.
             yaw = autoYaw;
@@ -145,6 +150,8 @@ namespace MFlight.Demo
                                                 turnTorque.y * yaw,
                                                 -turnTorque.z * roll) * forceMult,
                                     ForceMode.Force);
+            //float angleZ = Mathf.Clamp(gameObject.transform.eulerAngles.z, -90,90);
+            //gameObject.transform.rotation = Quaternion.Euler(transform.eulerAngles.x,transform.eulerAngles.y,angleZ);
         }
     }
 }
